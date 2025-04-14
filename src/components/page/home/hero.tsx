@@ -26,7 +26,7 @@ export const Hero = () => {
                dangerouslySetInnerHTML={{ __html: home.content }} />
          </BlurFade>
          <BlurFade inView>
-            <ul className="flex items-center justify-start gap-2">
+            <ul className="flex items-center justify-start flex-wrap gap-2">
                {socials.map(({ link, name, variant }) => (
                   <li key={link}>
                      <Button className="active:translate-y-0.5" asChild variant={variant as ButtonVariants["variant"]} size={"sm"}>
