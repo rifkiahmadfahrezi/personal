@@ -5,13 +5,18 @@
       "link": "mailto:rifkiaf589@gmail.com"
    },
    {
-      "name": "Github",
+      "name": "Download CV",
       "variant": "outline",
+      "link": "https://docs.google.com/document/d/15VnLNNJrZ7sPiX_-V7ZJ_2UcBbzoeWbEhZ5lzADuWrQ/edit?usp=sharing"
+   },
+   {
+      "name": "Github",
+      "variant": "ghost",
       "link": "https://github.com/rifkiahmadfahrezi"
    },
    {
       "name": "LinkedIn",
-      "variant": "outline",
+      "variant": "ghost",
       "link": "https://www.linkedin.com/in/rifki-ahmad-fahrezi/"
    }
 ]
