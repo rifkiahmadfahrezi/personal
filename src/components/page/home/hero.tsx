@@ -3,11 +3,22 @@ import home from "@/data/home.json"
 import socials from "@/data/links.json"
 import { Button, type ButtonVariants } from "@/components/ui/button";
 import { BlurFade } from "@/components/magicui/blur-fade";
+import {
+   Avatar,
+   AvatarFallback,
+   AvatarImage,
+ } from "@/components/ui/avatar"
 
 export const Hero = () => {
    return (
       <>
       <div className="my-5 space-y-2">
+         <BlurFade inView className="space-y-2">
+            <Avatar className="size-14">
+               <AvatarImage src="me.png" className="grayscale-100" alt={siteConfig.title} />
+               <AvatarFallback>{siteConfig.title.substring(0)}</AvatarFallback>
+            </Avatar>
+         </BlurFade>
          <BlurFade inView className="space-y-2">
             <h2 className="font-semibold">{siteConfig.title}</h2>
             <div 
