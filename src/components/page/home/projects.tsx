@@ -7,7 +7,7 @@ export const Projects = () => {
       <BlurFade className="grid grid-cols-1 gap-2">
          <h2 className="font-semibold">Projects</h2>
 
-         <ul className="grid grid-cols-2 gap-1">
+         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1">
             {projects.slice(0,3).map(({ title, description, link }) => (
                <li key={link}>
                   <BlurFade className="h-full">

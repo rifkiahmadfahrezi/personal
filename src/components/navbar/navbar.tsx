@@ -6,8 +6,8 @@ import { ThemeSwitcher } from "../theme-switcher";
 export const Navbar = () => {
    return (
       <>
-      <header className="bg-background h-11 flex items-center justify-between py-2">
-         <nav className="flex items-center justify-between flex-grow">
+      <header className="bg-background/30 backdrop-blur-xl h-11 flex items-center justify-between py-2 sticky top-0 z-50">
+         <nav className="flex items-center justify-between flex-grow max-w-screen-sm mx-auto px-4">
             <Link href={"/"}>
                {">_<"}
             </Link>

@@ -12,11 +12,11 @@ import {
 export const Hero = () => {
    return (
       <>
-      <div className="my-5 space-y-2">
+      <div className="space-y-2">
          <BlurFade inView className="space-y-2">
             <Avatar className="size-14">
                <AvatarImage src="me.png" className="grayscale-100" alt={siteConfig.title} />
-               <AvatarFallback>{siteConfig.title.substring(0)}</AvatarFallback>
+               <AvatarFallback>{siteConfig.title[0]}</AvatarFallback>
             </Avatar>
          </BlurFade>
          <BlurFade inView className="space-y-2">
