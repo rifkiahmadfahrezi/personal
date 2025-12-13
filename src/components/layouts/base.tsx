@@ -11,7 +11,7 @@ export const BaseLayout = ({
    <Navbar />
    <main className="max-h-svh max-w-screen-sm mx-auto px-4">
    {children}
-   <Footer />
+   {/* <Footer /> */}
    </main>
    </>
   )
