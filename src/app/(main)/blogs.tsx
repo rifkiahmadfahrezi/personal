@@ -1,87 +1,114 @@
 "use client"
 
-import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from "@/components/ui/button";
-
+import { ArrowRight } from "lucide-react";
 
 type BlogPost = {
-   title: string
-   link: string
-   date: string
-}
-
+   title: string;
+   link: string;
+   date: string;
+};
 
 export const Blogs = () => {
-   const [blogs, setBlogs] = useState<BlogPost[]>([])
-   const [loading, setLoading] = useState(false)
-   const [error, setError] = useState(false)
+   const [blogs, setBlogs] = useState<BlogPost[]>([]);
+   const [loading, setLoading] = useState(false);
+   const [error, setError] = useState(false);
 
    useEffect(() => {
-      setLoading(true)
+      setLoading(true);
       getBlogs()
          .then((data) => {
-            if (!data) throw new Error("No data found")
-            setBlogs(data)
-            console.log(data)
+            if (!data) throw new Error("No data found");
+            setBlogs(data);
          })
-         .catch((e) => {
-            console.error(e)
-            setError(true)
+         .catch(() => {
+            setError(true);
          })
-         .finally(() => setLoading(false))
-   }, [])
+         .finally(() => setLoading(false));
+   }, []);
 
-   if(loading){
+   if (loading) {
       return (
-         <>
-            {Array(4).fill(0).map((_, i) => (
-               <BlurFade key={i} className="grid grid-cols-1 gap-2">
-                  <Skeleton className="h-4 w-1/2" />
-                  <Skeleton className="h-6 w-full" />
-               </BlurFade>
-            ))}
-         </>
-      )
+         <div className="space-y-3">
+            {Array(3)
+               .fill(0)
+               .map((_, i) => (
+                  <BlurFade key={i} className="space-y-2">
+                     <Skeleton className="h-4 w-24" />
+                     <Skeleton className="h-5 w-full" />
+                  </BlurFade>
+               ))}
+         </div>
+      );
    }
 
-   if(error) return (
-      <BlurFade className="grid grid-cols-1 gap-2">
-         <h2 className="font-semibold">Blogs</h2>
-         <p className="text-muted-foreground">Failed to load blogs</p>
-      </BlurFade>
-   )
+   if (error)
+      return (
+         <BlurFade className="space-y-1">
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+               From the Blog
+            </p>
+            {/* <h2 className="text-base font-semibold tracking-tight">Writing</h2> */}
+            <p className="text-sm text-muted-foreground">
+               Unable to load posts right now.
+            </p>
+         </BlurFade>
+      );
 
    return (
-      <BlurFade className="grid grid-cols-1 gap-2">
-         <h2 className="font-semibold">Blogs</h2>
+      <BlurFade className="space-y-3">
+         <div className="space-y-0.5">
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+               From the Blog
+            </p>
+            {/* <h2 className="text-base font-semibold tracking-tight">Writing</h2> */}
+         </div>
 
-         <ul className="grid grid-cols-1 gap-3">
+         <ul className="divide-y divide-border">
             {blogs.map(({ title, date, link }) => (
                <li key={link}>
-                  <BlurFade className="h-full">
-                     <a href={link} target="_blank">
-                        <Card className="p-3 gap-1 h-full hover:-translate-y-1 transition duration-150">
-                           <CardDescription className="text-sm text-muted-foreground">{new Date(date).toLocaleDateString()}</CardDescription>
-                           <CardTitle className="mb-1 line-clamp-2">{title}</CardTitle>
-                        </Card>
+                  <BlurFade inView>
+                     <a
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-start justify-between gap-4 py-3 transition-colors hover:text-foreground"
+                     >
+                        <span className="text-sm font-medium leading-snug line-clamp-2 group-hover:underline underline-offset-2 decoration-muted-foreground/40">
+                           {title}
+                        </span>
+                        <time
+                           dateTime={new Date(date).toISOString()}
+                           className="text-xs text-muted-foreground whitespace-nowrap mt-0.5 tabular-nums"
+                        >
+                           {new Date(date).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                           })}
+                        </time>
                      </a>
                   </BlurFade>
                </li>
             ))}
          </ul>
-         <Button asChild variant={"link"}>
-            <a href="https://medium.com/@rifkiaf" target="_blank">See more</a>
-         </Button>
+
+         <a
+            href="https://medium.com/@rifkiaf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+         >
+            Read all posts
+            <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+         </a>
       </BlurFade>
-   )
+   );
 };
 
 const getBlogs = async () => {
-
-   const blogs = await fetch("/api/blogs")
-
-   return await blogs.json()
-}
+   const blogs = await fetch("/api/blogs");
+   return await blogs.json();
+};
