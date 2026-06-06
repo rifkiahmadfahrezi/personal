@@ -1,6 +1,6 @@
-export const menus = [
-   {
-      label: 'Project',
-      link: '/project'
-   },
-]
+export const menus: { label: string; link: string }[] = [
+   // {
+   //    label: "Projects",
+   //    link: "/project",
+   // },
+];

@@ -1,33 +1,49 @@
+"use client";
+
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { menus } from "./menu";
 import { ThemeSwitcher } from "../theme-switcher";
+import { cn } from "@/lib/utils";
+import { BlurFade } from "../magicui/blur-fade";
 
 export const Navbar = () => {
-   return (
-      <>
-      <header className="bg-background/30 backdrop-blur-xl h-11 flex items-center justify-between py-2 sticky top-0 z-50">
-         <nav className="flex items-center justify-between flex-grow max-w-screen-sm mx-auto px-4">
-            <Link href={"/"}>
-               {">_<"}
-            </Link>
+   const pathname = usePathname();
 
-            <ul className="flex items-center justify-between gap-1">
-               {menus.map(menu => (
-                  <li key={menu.link}>
-                     <Button size={"sm"} variant={'ghost'} asChild>
-                        <Link href={menu.link}>
-                           {menu.label}
-                        </Link>
-                     </Button>
+   return (
+      <BlurFade direction="down" duration={0.5}>
+         <header className="bg-background/60 backdrop-blur-2xl border-b border-border/50 h-12 flex items-center justify-between sticky top-0 z-50">
+            <nav className="flex items-center justify-between flex-grow max-w-2xl mx-auto px-5">
+               <Link
+                  href="/"
+                  className="text-sm font-semibold tracking-tight text-foreground hover:text-muted-foreground transition-colors"
+               >
+                  R.
+               </Link>
+
+               <ul className="flex items-center gap-0.5">
+                  {menus.map((menu) => (
+                     <li key={menu.link}>
+                        <Button
+                           size="sm"
+                           variant="ghost"
+                           asChild
+                           className={cn(
+                              "text-muted-foreground hover:text-foreground transition-colors",
+                              pathname === menu.link && "text-foreground"
+                           )}
+                        >
+                           <Link href={menu.link}>{menu.label}</Link>
+                        </Button>
+                     </li>
+                  ))}
+                  <li>
+                     <ThemeSwitcher />
                   </li>
-               ))}
-               <li>
-                  <ThemeSwitcher />
-               </li>
-            </ul>
-         </nav>
-      </header>
-      </>
-   )
+               </ul>
+            </nav>
+         </header>
+      </BlurFade>
+   );
 };
