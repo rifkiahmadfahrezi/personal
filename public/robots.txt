@@ -1,0 +1,9 @@
+# *
+User-agent: *
+   Allow: /
+   
+   # Host
+   Host: https://rifkiaf.my.id
+   
+   # Sitemaps
+   Sitemap: https://rifkiaf.my.id/sitemap.xml

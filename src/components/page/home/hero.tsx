@@ -1,69 +1,45 @@
 import { siteConfig } from "@/config/site";
-import home from "@/data/home.json";
-import socials from "@/data/links.json";
+import home from "@/data/home.json"
+import socials from "@/data/links.json"
 import { Button, type ButtonVariants } from "@/components/ui/button";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {
    Avatar,
    AvatarFallback,
    AvatarImage,
-} from "@/components/ui/avatar";
-import { Mail, FileText, Github, Linkedin } from "lucide-react";
-
-const iconMap: Record<string, React.ElementType> = {
-   Mail,
-   FileText,
-   Github,
-   Linkedin,
-};
+ } from "@/components/ui/avatar"
 
 export const Hero = () => {
    return (
-      <section aria-label="About me" className="space-y-6">
-         <BlurFade inView className="flex items-center gap-4">
-            <Avatar className="size-16 ring-2 ring-border grayscale-100">
-               <AvatarImage src="me.png" alt={`Photo of ${siteConfig.title}`} />
-               <AvatarFallback>RF</AvatarFallback>
+      <>
+      <div className="space-y-2">
+         <BlurFade inView className="space-y-2">
+            <Avatar className="size-14">
+               <AvatarImage src="me.png" className="grayscale-100" alt={siteConfig.title} />
+               <AvatarFallback>{siteConfig.title[0]}</AvatarFallback>
             </Avatar>
-            <div className="space-y-0.5">
-               <h1 className="text-lg font-semibold tracking-tight">{siteConfig.title}</h1>
-               <p className="text-sm text-muted-foreground">Front-end Developer</p>
-            </div>
          </BlurFade>
-
-         <BlurFade inView delay={0.1}>
-            <div
-               className="prose dark:prose-invert prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-strong:font-medium max-w-none text-[0.935rem]"
-               dangerouslySetInnerHTML={{ __html: home.content }}
-            />
+         <BlurFade inView className="space-y-2">
+            <h2 className="font-semibold">{siteConfig.title}</h2>
+            <div 
+               className="prose dark:prose-invert max-w-none" 
+               dangerouslySetInnerHTML={{ __html: home.content }} />
          </BlurFade>
-
-         <BlurFade inView delay={0.2}>
+         <BlurFade inView>
             <ul className="flex items-center justify-start flex-wrap gap-2">
-               {socials.map(({ link, name, variant, icon }) => {
-                  const Icon = icon ? iconMap[icon] : null;
-                  return (
-                     <li key={link}>
-                        <Button
-                           className="active:translate-y-0.5 gap-1.5"
-                           asChild
-                           variant={variant as ButtonVariants["variant"]}
-                           size="sm"
-                        >
-                           <a
-                              target={link.startsWith("http") ? "_blank" : "_self"}
-                              rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
-                              href={link}
-                           >
-                              {Icon && <Icon className="size-3.5" />}
-                              {name}
-                           </a>
-                        </Button>
-                     </li>
-                  );
-               })}
+               {socials.map(({ link, name, variant }) => (
+                  <li key={link}>
+                     <Button className="active:translate-y-0.5" asChild variant={variant as ButtonVariants["variant"]} size={"sm"}>
+                        <a 
+                           target={link.startsWith("http") ? "_blank" : "_self"} href={link}>
+                           {name}
+                        </a>
+                     </Button>
+                  </li>
+               ))}
             </ul>
          </BlurFade>
-      </section>
-   );
+      </div>
+      </>
+   )
 };
