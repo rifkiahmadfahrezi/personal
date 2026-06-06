@@ -1,36 +1,36 @@
 [
    {
       "title": "Nekode",
-      "description": "A platform where I share my learning notes or summaries as structured courses.",
+      "description": "A structured learning platform where I share bite-sized developer notes and curated courses.",
       "link": "https://nekode.my.id",
       "image": null,
-      "role": ["Developer", "Content creator"]
+      "role": ["Developer", "Content Creator"]
    },
    {
       "title": "Nyanboard",
-      "description": "A free and open-source shadcn UI dashboard template for NextJS.",
+      "description": "A free, open-source admin dashboard template built with shadcn/ui and Next.js.",
       "link": "https://nyanboard.rifkiaf.my.id/",
       "image": null,
       "role": ["Developer"]
    },
    {
       "title": "smktarpan1.sch.id",
-      "description": "Website for SMK Taruna harapan 1 cipatat, a vocational highschool in Indonesia.",
+      "description": "Full-stack school website for SMK Taruna Harapan 1, designed for accessibility and speed.",
       "link": "https://smktarpan1.sch.id",
       "image": {
          "full": "/smk-desktop.png",
          "thumbnail": "/smktarpan-ui.png"
       },
-      "role": ["Front-end developer", "UI/UX designer"]
+      "role": ["Front-end Developer", "UI/UX Designer"]
    },
    {
       "title": "syergie.com",
-      "description": "Company profile website for Syergie, a company consultants in distribution and utilization of energy from Indonesia.",
+      "description": "Corporate identity site for Syergie, an energy consulting firm — focused on clarity and trust.",
       "link": "https://syergie.com",
       "image": {
          "full": "/syergie-desktop.png",
          "thumbnail": "/syergie-ui.png"
       },
-      "role": ["Front-end developer", "UI/UX designer"]
+      "role": ["Front-end Developer", "UI/UX Designer"]
    }
 ]

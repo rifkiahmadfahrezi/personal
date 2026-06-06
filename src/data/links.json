@@ -1,22 +1,26 @@
 [
    {
-      "name": "Get in touch ✉",
+      "name": "Say hello",
       "variant": "default",
-      "link": "mailto:rifkiaf589@gmail.com"
+      "link": "mailto:rifkiaf589@gmail.com",
+      "icon": "Mail"
    },
    {
-      "name": "Download CV",
+      "name": "Résumé",
       "variant": "outline",
-      "link": "https://docs.google.com/document/d/15VnLNNJrZ7sPiX_-V7ZJ_2UcBbzoeWbEhZ5lzADuWrQ/edit?usp=sharing"
+      "link": "https://docs.google.com/document/d/15VnLNNJrZ7sPiX_-V7ZJ_2UcBbzoeWbEhZ5lzADuWrQ/edit?usp=sharing",
+      "icon": "FileText"
    },
    {
       "name": "Github",
       "variant": "ghost",
-      "link": "https://github.com/rifkiahmadfahrezi"
+      "link": "https://github.com/rifkiahmadfahrezi",
+      "icon": "Github"
    },
    {
       "name": "LinkedIn",
       "variant": "ghost",
-      "link": "https://www.linkedin.com/in/rifki-ahmad-fahrezi/"
+      "link": "https://www.linkedin.com/in/rifki-ahmad-fahrezi/",
+      "icon": "Linkedin"
    }
 ]
