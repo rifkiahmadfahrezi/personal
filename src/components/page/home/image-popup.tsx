@@ -32,7 +32,7 @@ export const ImagePopup = ({
                onClick={() => setIsOpen(!isOpen)}
                className={cn(`border-none 
                rounded-tl-none rounded-tr-none transition duration-300
-               w-full md:absolute md:top-[95%] -translate-y-full md:group-hover:translate-y-0 pt-5 h-auto left-0 z-[-10]`, className)}>
+               w-full md:absolute md:top-[95%] -translate-y-full md:group-hover:translate-y-0 md:group-focus-within:translate-y-0 pt-5 h-auto left-0 z-[-10]`, className)}>
                Show full design
             </Button>
          </DrawerTrigger>

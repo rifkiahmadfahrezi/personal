@@ -9,7 +9,7 @@ export const BaseLayout = ({
    return (
       <>
          <Navbar />
-         <main className="max-w-2xl mx-auto px-5 py-16 md:py-24 min-h-[calc(100svh-3rem)]">
+         <main className="max-w-2xl mx-auto px-5 py-10 min-h-[calc(100svh-3rem)]">
             {children}
          </main>
          <Footer />

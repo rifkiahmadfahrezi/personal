@@ -12,8 +12,8 @@ export const Navbar = () => {
    const pathname = usePathname();
 
    return (
-      <BlurFade direction="down" duration={0.5}>
-         <header className="bg-background/60 backdrop-blur-2xl border-b border-border/50 h-12 flex items-center justify-between sticky top-0 z-50">
+      <BlurFade direction="down" duration={0.5} className="sticky top-0 z-50">
+         <header className="bg-background/80 backdrop-blur-2xl border-b border-border/50 h-12 flex items-center justify-between sticky top-0 z-50">
             <nav className="flex items-center justify-between flex-grow max-w-2xl mx-auto px-5">
                <Link
                   href="/"
