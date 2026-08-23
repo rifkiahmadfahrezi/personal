@@ -1,10 +1,9 @@
 import projects from "@/data/projects.json";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { BlurFade } from "@/components/magicui/blur-fade";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { ImagePopup } from "./image-popup";
+import { ImagePopupButton } from "./image-popup-button";
 
 export const Projects = () => {
    return (
@@ -13,39 +12,27 @@ export const Projects = () => {
             <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                Selected Work
             </p>
-            {/* <h2 className="text-base font-semibold tracking-tight">Projects</h2> */}
          </div>
 
-         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+         <ul className="grid grid-cols-1 gap-3">
             {projects.slice(0, 4).map(({ title, description, link, image, role }) => (
-               <li key={link} className="relative isolate group h-full">
+               <li key={link} className="h-full">
                   <BlurFade inView className="h-full">
-                     <a
-                        href={link}
-                        className="group/card block h-full"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                     >
-                        <Card className="p-3 gap-2 h-full hover:border-foreground/20 transition-all duration-200">
-                           {image && (
-                              <figure className="aspect-video w-full overflow-hidden rounded-md mb-2">
-                                 <Image
-                                    src={image.thumbnail}
-                                    alt={`${title} preview`}
-                                    width={500}
-                                    height={300}
-                                    className="object-cover w-full h-full transition-transform duration-300 group-hover/card:scale-[1.02]"
-                                 />
-                              </figure>
-                           )}
+                     <Card className="p-3 gap-2 h-full flex flex-col justify-between hover:border-foreground/20 transition-all duration-200">
+                        <a
+                           href={link}
+                           className="group/card block space-y-2 flex-1"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                        >
                            <div className="flex items-start justify-between gap-2">
                               <CardTitle className="text-sm">{title}</CardTitle>
-                              <ArrowRight className="size-3.5 text-muted-foreground shrink-0 mt-0.5 transition-transform duration-200 group-hover/card:translate-x-0.5" />
+                              <ArrowRight className="size-3.5 text-muted-foreground shrink-0 mt-0.5 transition-transform duration-200 group-hover/card:translate-x-0.5 group-hover/card:text-foreground" />
                            </div>
                            <CardDescription className="text-xs leading-relaxed">
                               {description}
                            </CardDescription>
-                           <div className="flex items-center gap-1 flex-wrap mt-1">
+                           <div className="flex items-center gap-1 flex-wrap pt-1">
                               {role.map((r) => (
                                  <Badge
                                     key={r}
@@ -56,15 +43,21 @@ export const Projects = () => {
                                  </Badge>
                               ))}
                            </div>
-                        </Card>
-                     </a>
+                        </a>
+                        {image && (
+                           <ImagePopupButton
+                              image={image.full}
+                              title={title}
+                              link={link}
+                              alt={`Full design of ${title}`}
+                           />
+                        )}
+                     </Card>
                   </BlurFade>
-                  {image && (
-                     <ImagePopup image={image.full} alt={`Full design of ${title}`} />
-                  )}
                </li>
             ))}
          </ul>
       </BlurFade>
    );
 };
+

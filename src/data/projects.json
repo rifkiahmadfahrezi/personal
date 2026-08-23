@@ -1,17 +1,10 @@
 [
    {
       "title": "Nekode",
-      "description": "A structured learning platform where I share bite-sized developer notes and curated courses.",
-      "link": "https://nekode.my.id",
+      "description": "A platform to share things that I've built.",
+      "link": "https://nekode.id",
       "image": null,
       "role": ["Developer", "Content Creator"]
-   },
-   {
-      "title": "Nyanboard",
-      "description": "A free, open-source admin dashboard template built with shadcn/ui and Next.js.",
-      "link": "https://nyanboard.rifkiaf.my.id/",
-      "image": null,
-      "role": ["Developer"]
    },
    {
       "title": "smktarpan1.sch.id",
