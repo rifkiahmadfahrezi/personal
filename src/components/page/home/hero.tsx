@@ -27,7 +27,7 @@ export const Hero = () => {
             </Avatar>
             <div className="space-y-0.5">
                <h1 className="text-lg font-semibold tracking-tight">{siteConfig.title}</h1>
-               <p className="text-sm text-muted-foreground">Front-end Developer</p>
+               <p className="text-sm text-muted-foreground">Front-end Developers</p>
             </div>
          </BlurFade>
 
