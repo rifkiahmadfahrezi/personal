@@ -9,7 +9,7 @@ export function VersionChecker() {
 
   useEffect(() => {
     const currentBuildId = process.env.NEXT_PUBLIC_BUILD_ID;
-
+ 
     const check = async () => {
       try {
         const res = await fetch("/api/version", { cache: "no-store" });
