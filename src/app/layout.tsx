@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { siteConfig } from "@/config/site";
 import { AllProviders } from "@/components/providers";
+import { VersionChecker } from "@/components/version-checker";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -92,6 +93,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <AllProviders>{children}</AllProviders>
+        <VersionChecker />
       </body>
     </html>
   );
