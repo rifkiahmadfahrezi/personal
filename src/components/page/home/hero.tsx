@@ -2,13 +2,19 @@ import { siteConfig } from "@/config/site";
 import home from "@/data/home.json";
 import socials from "@/data/links.json";
 import { Button, type ButtonVariants } from "@/components/ui/button";
+import {
+   DropdownMenu,
+   DropdownMenuContent,
+   DropdownMenuItem,
+   DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {
    Avatar,
    AvatarFallback,
    AvatarImage,
 } from "@/components/ui/avatar";
-import { Mail, FileText, Github, Linkedin } from "lucide-react";
+import { Mail, FileText, Github, Linkedin, ChevronDown } from "lucide-react";
 
 const iconMap: Record<string, React.ElementType> = {
    Mail,
@@ -40,8 +46,37 @@ export const Hero = () => {
 
          <BlurFade inView delay={0.2}>
             <ul className="flex items-center justify-start flex-wrap gap-2">
-               {socials.map(({ link, name, variant, icon }) => {
+               {socials.map(({ link, name, variant, icon, ...rest }) => {
                   const Icon = icon ? iconMap[icon] : null;
+                  const options = "options" in rest ? rest.options : null;
+                  if (options) {
+                     return (
+                        <li key={link}>
+                           <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                 <Button
+                                    className="active:translate-y-0.5 gap-1.5 group"
+                                    variant={variant as ButtonVariants["variant"]}
+                                    size="sm"
+                                 >
+                                    {Icon && <Icon className="size-3.5" />}
+                                    {name}
+                                    <ChevronDown className="size-3.5 transition-transform group-data-[state=open]:rotate-180" />
+                                 </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="start">
+                                 {options.map((option) => (
+                                    <DropdownMenuItem key={option.link} asChild>
+                                       <a target="_blank" rel="noopener noreferrer" href={option.link}>
+                                          {option.name}
+                                       </a>
+                                    </DropdownMenuItem>
+                                 ))}
+                              </DropdownMenuContent>
+                           </DropdownMenu>
+                        </li>
+                     );
+                  }
                   return (
                      <li key={link}>
                         <Button

@@ -1,8 +1,8 @@
 [
    {
-      "title": "Nekode",
-      "description": "A platform to share things that I've built.",
-      "link": "https://nekode.id",
+      "title": "nekode/ui",
+      "description": "An open-source shadcn/ui registry of reusable components, blocks, and templates, installable directly through the shadcn CLI.",
+      "link": "https://ui.nekode.id",
       "image": null,
       "role": ["Developer", "Content Creator"]
    },

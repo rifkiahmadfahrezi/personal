@@ -9,7 +9,17 @@
       "name": "Résumé",
       "variant": "outline",
       "link": "https://docs.google.com/document/d/15VnLNNJrZ7sPiX_-V7ZJ_2UcBbzoeWbEhZ5lzADuWrQ/edit?usp=sharing",
-      "icon": "FileText"
+      "icon": "FileText",
+      "options": [
+         {
+            "name": "English",
+            "link": "https://docs.google.com/document/d/15VnLNNJrZ7sPiX_-V7ZJ_2UcBbzoeWbEhZ5lzADuWrQ/edit?usp=sharing"
+         },
+         {
+            "name": "Bahasa Indonesia",
+            "link": "https://docs.google.com/document/d/1m1oG9Dd8igC4NLqwkOgnNTxT17P1MKezeb4tAQP0PhM/edit?usp=sharing"
+         }
+      ]
    },
    {
       "name": "Github",
