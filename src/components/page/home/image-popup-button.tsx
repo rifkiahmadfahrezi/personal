@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -33,14 +33,14 @@ export const ImagePopupButton = ({
    const [isOpen, setIsOpen] = useState(false);
    const [isImageLoading, setIsImageLoading] = useState(true);
 
-   useEffect(() => {
-      if (isOpen) {
-         setIsImageLoading(true);
-      }
-   }, [isOpen, image]);
-
    return (
-      <Drawer open={isOpen} onOpenChange={setIsOpen}>
+      <Drawer
+         open={isOpen}
+         onOpenChange={(open) => {
+            setIsOpen(open);
+            if (open) setIsImageLoading(true);
+         }}
+      >
          <DrawerTrigger asChild>
             <Button
                variant="outline"

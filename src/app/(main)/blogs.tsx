@@ -13,11 +13,10 @@ type BlogPost = {
 
 export const Blogs = () => {
    const [blogs, setBlogs] = useState<BlogPost[]>([]);
-   const [loading, setLoading] = useState(false);
+   const [loading, setLoading] = useState(true);
    const [error, setError] = useState(false);
 
    useEffect(() => {
-      setLoading(true);
       getBlogs()
          .then((data) => {
             if (!data) throw new Error("No data found");
