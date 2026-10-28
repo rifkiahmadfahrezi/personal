@@ -42,17 +42,17 @@ export const ImagePopupButton = ({
          }}
       >
          <DrawerTrigger asChild>
-            <Button
-               variant="outline"
-               size="sm"
+            <button
+               type="button"
+               data-cursor="Open"
                className={cn(
-                  "w-full mt-2.5 h-8 text-xs font-normal text-muted-foreground hover:text-foreground border-border/60 hover:bg-accent/50 gap-1.5 transition-colors",
+                  "label inline-flex h-9 shrink-0 items-center whitespace-nowrap gap-1.5 rounded-full border border-border px-3 transition-colors duration-300 hover:border-foreground hover:!text-foreground",
                   className
                )}
             >
-               <Maximize2 className="size-3.5 shrink-0 opacity-70" />
-               <span>Show full design</span>
-            </Button>
+               <Maximize2 className="size-3 shrink-0" />
+               <span>Full design</span>
+            </button>
          </DrawerTrigger>
          <DrawerContent className="max-h-[90vh]">
             <div className="mx-auto w-full max-w-4xl flex flex-col h-full overflow-hidden">
@@ -91,6 +91,7 @@ export const ImagePopupButton = ({
                {/* Scrollable Container with vaul drag disabled so scrolling works smoothly */}
                <div
                   data-vaul-no-drag
+                  data-lenis-prevent
                   className="flex-1 overflow-y-auto p-4 sm:p-6 max-h-[calc(90vh-80px)] overscroll-contain"
                >
                   <div className="relative flex justify-center w-full min-h-[400px] bg-muted/20 rounded-lg p-2 sm:p-4 border border-border/40 overflow-hidden">

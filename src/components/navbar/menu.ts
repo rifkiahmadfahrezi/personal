@@ -1,6 +1,18 @@
 export const menus: { label: string; link: string }[] = [
-   // {
-   //    label: "Projects",
-   //    link: "/project",
-   // },
+   {
+      label: "Work",
+      link: "/#work",
+   },
+   {
+      label: "Experience",
+      link: "/#experience",
+   },
+   {
+      label: "Writing",
+      link: "/#writing",
+   },
+   {
+      label: "Contact",
+      link: "#contact",
+   },
 ];

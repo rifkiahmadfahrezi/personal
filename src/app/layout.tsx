@@ -1,14 +1,29 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 import { siteConfig } from "@/config/site";
 import { AllProviders } from "@/components/providers";
 // import { VersionChecker } from "@/components/version-checker";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-geist-sans",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist-mono",
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-instrument-serif",
 });
 
 export const metadata: Metadata = {
@@ -91,7 +106,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body
+        className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
+      >
         <AllProviders>{children}</AllProviders>
         {/* <VersionChecker /> */}
       </body>

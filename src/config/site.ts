@@ -1,7 +1,7 @@
 export const siteConfig = {
    title: "Rifki Ahmad Fahrezi",
    shortName: "Rifki",
-   description: "Front-end developer based in Bandung, Indonesia — crafting polished, user-centric digital experiences.",
+   description: "Front-end developer from Bandung, Indonesia, building production web apps with React, Next.js and TypeScript, from Figma design to deployment.",
    url: "https://rifkiaf.my.id",
    ogImage: "/me.png",
    locale: "en_US",
@@ -15,6 +15,10 @@ export const siteConfig = {
       "Indonesia",
       "portfolio",
       "UI engineer",
+      "TypeScript",
+      "Tailwind CSS",
+      "design systems",
+      "UI/UX designer",
    ],
    links: {
       github: "https://github.com/rifkiahmadfahrezi",

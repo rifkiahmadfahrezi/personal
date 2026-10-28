@@ -1,5 +1,7 @@
 import { Navbar } from "../navbar";
 import { Footer } from "../footer";
+import { Cursor } from "../fx/cursor";
+import { Backdrop } from "../fx/backdrop";
 
 export const BaseLayout = ({
    children,
@@ -8,11 +10,11 @@ export const BaseLayout = ({
 }) => {
    return (
       <>
+         <Backdrop />
          <Navbar />
-         <main className="max-w-2xl mx-auto px-5 py-10 min-h-[calc(100svh-3rem)]">
-            {children}
-         </main>
+         <main className="min-h-[100svh]">{children}</main>
          <Footer />
+         <Cursor />
       </>
    );
 };

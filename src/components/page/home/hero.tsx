@@ -1,104 +1,104 @@
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "motion/react";
+import { ArrowDown } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import home from "@/data/home.json";
-import socials from "@/data/links.json";
-import { Button, type ButtonVariants } from "@/components/ui/button";
-import {
-   DropdownMenu,
-   DropdownMenuContent,
-   DropdownMenuItem,
-   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { BlurFade } from "@/components/magicui/blur-fade";
-import {
-   Avatar,
-   AvatarFallback,
-   AvatarImage,
-} from "@/components/ui/avatar";
-import { Mail, FileText, Github, Linkedin, ChevronDown } from "lucide-react";
+import { SplitText } from "@/components/fx/split-text";
+import { LocalTime } from "@/components/fx/local-time";
+import { SocialLinks } from "./social-links";
 
-const iconMap: Record<string, React.ElementType> = {
-   Mail,
-   FileText,
-   Github,
-   Linkedin,
-};
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export const Hero = () => {
+   const ref = useRef<HTMLElement>(null);
+   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+   const nameY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
+   // Spotlight follows the pointer through a CSS variable, no re-render.
+   const onPointerMove = (e: React.PointerEvent<HTMLElement>) => {
+      const r = e.currentTarget.getBoundingClientRect();
+      e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+   };
+
+   const [first, ...rest] = siteConfig.title.split(" ");
+   const last = rest.pop() ?? "";
+   const middle = rest.join(" ");
+
    return (
-      <section aria-label="About me" className="space-y-6">
-         <BlurFade inView className="flex items-center gap-4">
-            <Avatar className="size-16 ring-2 ring-border grayscale-100">
-               <AvatarImage src="me.png" alt={`Photo of ${siteConfig.title}`} />
-               <AvatarFallback>RF</AvatarFallback>
-            </Avatar>
-            <div className="space-y-0.5">
-               <h1 className="text-lg font-semibold tracking-tight">{siteConfig.title}</h1>
-               <p className="text-sm text-muted-foreground">Front-end Developer</p>
+      <section
+         ref={ref}
+         aria-label="Intro"
+         onPointerMove={onPointerMove}
+         className="gutter relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-24 pb-8 [--mx:50%] [--my:40%]"
+      >
+         <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black_55%,transparent)] [background:radial-gradient(600px_circle_at_var(--mx)_var(--my),color-mix(in_oklch,var(--signal)_18%,transparent),transparent_60%)]"
+         />
+
+         <motion.div
+            className="relative grid grid-cols-2 gap-4 md:grid-cols-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+         >
+            <p className="label">Front-end Developer</p>
+            <p className="label hidden md:block">Bandung, ID</p>
+            <p className="label text-right">
+               <LocalTime />
+            </p>
+         </motion.div>
+
+         <motion.div style={{ y: nameY, opacity: fade }} className="relative">
+            <h1 className="font-semibold leading-[0.88] tracking-[-0.045em] text-[18vw] sm:text-[clamp(3.5rem,14.5vw,15rem)]">
+               <span className="block">
+                  <SplitText text={first} by="char" delay={0.1} stagger={0.035} />
+               </span>
+               <span className="block">
+                  <span className="font-serif font-normal italic tracking-[-0.02em] text-signal">
+                     <SplitText text={middle} by="char" delay={0.25} stagger={0.035} />
+                  </span>{" "}
+                  <SplitText text={last} by="char" delay={0.4} stagger={0.035} />
+               </span>
+            </h1>
+         </motion.div>
+
+         <motion.div
+            className="relative grid items-end gap-8 lg:grid-cols-12 lg:gap-x-4"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: EASE, delay: 0.8 }}
+         >
+            <div className="flex items-center gap-4 lg:col-span-4">
+               <Image
+                  src="/me.webp"
+                  alt={`Photo of ${siteConfig.title}`}
+                  width={64}
+                  height={64}
+                  priority
+                  className="size-14 shrink-0 rounded-full object-cover grayscale transition duration-500 hover:grayscale-0"
+               />
+               <div
+                  className="max-w-md text-[clamp(1rem,0.4vw+0.85rem,1.2rem)] leading-snug text-muted-foreground [&_strong]:font-medium [&_strong]:text-foreground"
+                  dangerouslySetInnerHTML={{ __html: home.content }}
+               />
             </div>
-         </BlurFade>
-
-         <BlurFade inView delay={0.1}>
-            <div
-               className="prose dark:prose-invert prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-strong:font-medium max-w-none text-[0.935rem]"
-               dangerouslySetInnerHTML={{ __html: home.content }}
-            />
-         </BlurFade>
-
-         <BlurFade inView delay={0.2}>
-            <ul className="flex items-center justify-start flex-wrap gap-2">
-               {socials.map(({ link, name, variant, icon, ...rest }) => {
-                  const Icon = icon ? iconMap[icon] : null;
-                  const options = "options" in rest ? rest.options : null;
-                  if (options) {
-                     return (
-                        <li key={link}>
-                           <DropdownMenu>
-                              <DropdownMenuTrigger asChild>
-                                 <Button
-                                    className="active:translate-y-0.5 gap-1.5 group"
-                                    variant={variant as ButtonVariants["variant"]}
-                                    size="sm"
-                                 >
-                                    {Icon && <Icon className="size-3.5" />}
-                                    {name}
-                                    <ChevronDown className="size-3.5 transition-transform group-data-[state=open]:rotate-180" />
-                                 </Button>
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="start">
-                                 {options.map((option) => (
-                                    <DropdownMenuItem key={option.link} asChild>
-                                       <a target="_blank" rel="noopener noreferrer" href={option.link}>
-                                          {option.name}
-                                       </a>
-                                    </DropdownMenuItem>
-                                 ))}
-                              </DropdownMenuContent>
-                           </DropdownMenu>
-                        </li>
-                     );
-                  }
-                  return (
-                     <li key={link}>
-                        <Button
-                           className="active:translate-y-0.5 gap-1.5"
-                           asChild
-                           variant={variant as ButtonVariants["variant"]}
-                           size="sm"
-                        >
-                           <a
-                              target={link.startsWith("http") ? "_blank" : "_self"}
-                              rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
-                              href={link}
-                           >
-                              {Icon && <Icon className="size-3.5" />}
-                              {name}
-                           </a>
-                        </Button>
-                     </li>
-                  );
-               })}
-            </ul>
-         </BlurFade>
+            <div className="lg:col-span-7">
+               <SocialLinks />
+            </div>
+            <a
+               href="#work"
+               aria-label="Scroll to selected work"
+               className="group hidden size-14 items-center justify-center justify-self-end rounded-full border border-border transition-colors duration-300 hover:border-signal hover:bg-signal hover:text-signal-foreground lg:col-span-1 lg:flex"
+            >
+               <ArrowDown className="size-5 transition-transform duration-500 ease-out-expo group-hover:translate-y-1" />
+            </a>
+         </motion.div>
       </section>
    );
 };

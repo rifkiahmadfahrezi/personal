@@ -1,29 +1,29 @@
 [
    {
       "title": "nekode/ui",
-      "description": "An open-source shadcn/ui registry of reusable components, blocks, and templates, installable directly through the shadcn CLI.",
+      "description": "Open-source shadcn/ui registry of components, blocks and templates, installable straight from the shadcn CLI. Built with React, TanStack Router, Tailwind CSS and TypeScript, documented with Fumadocs.",
       "link": "https://ui.nekode.id",
       "image": null,
-      "role": ["Developer", "Content Creator"]
+      "role": ["Creator", "Open Source"]
    },
    {
       "title": "smktarpan1.sch.id",
-      "description": "Full-stack school website for SMK Taruna Harapan 1, designed for accessibility and speed.",
+      "description": "Responsive website for a vocational high school. Designed in Figma, built with React, Vite and Tailwind CSS.",
       "link": "https://smktarpan1.sch.id",
       "image": {
          "full": "/smk-desktop.png",
-         "thumbnail": "/smktarpan-ui.png"
+         "thumbnail": "/smktarpan-thumb.webp"
       },
-      "role": ["Front-end Developer", "UI/UX Designer"]
+      "role": ["UI Designer", "Front-end Developer"]
    },
    {
       "title": "syergie.com",
-      "description": "Corporate identity site for Syergie, an energy consulting firm — focused on clarity and trust.",
+      "description": "Company profile for an energy consulting firm, taken from Figma UI design to a Next.js and Tailwind CSS build.",
       "link": "https://syergie.com",
       "image": {
          "full": "/syergie-desktop.png",
-         "thumbnail": "/syergie-ui.png"
+         "thumbnail": "/syergie-thumb.webp"
       },
-      "role": ["Front-end Developer", "UI/UX Designer"]
+      "role": ["UI Designer", "Front-end Developer"]
    }
 ]

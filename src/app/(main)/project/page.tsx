@@ -1,9 +1,6 @@
-import projects from "@/data/projects.json";
-import { Card, CardTitle, CardDescription } from "@/components/ui/card";
-import { BlurFade } from "@/components/magicui/blur-fade";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
+import { WorkList } from "@/components/page/home";
+import { SplitText } from "@/components/fx/split-text";
 
 export const metadata: Metadata = {
    title: "Projects",
@@ -13,50 +10,20 @@ export const metadata: Metadata = {
 
 const Projects = () => {
    return (
-      <div className="space-y-6">
-         <BlurFade className="space-y-1">
-            <h1 className="text-lg font-semibold tracking-tight">Projects</h1>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+      <section aria-labelledby="projects-title" className="gutter pt-36 pb-[clamp(5rem,12vw,10rem)]">
+         <div className="mb-12 grid gap-6 md:mb-20 md:grid-cols-12 md:items-end">
+            <h1 id="projects-title" className="text-[clamp(3rem,11vw,11rem)] font-semibold leading-[0.88] tracking-[-0.045em] md:col-span-8">
+               <SplitText text="All" by="char" />{" "}
+               <span className="font-serif font-normal italic tracking-[-0.02em] text-signal">
+                  <SplitText text="projects" by="char" delay={0.1} stagger={0.03} />
+               </span>
+            </h1>
+            <p className="max-w-xs text-sm leading-relaxed text-muted-foreground md:col-span-4 md:justify-self-end">
                Everything I&apos;ve built — from side projects to client work.
             </p>
-         </BlurFade>
-
-         <ul className="grid grid-cols-1 gap-2">
-            {projects.map(({ title, description, link, role }) => (
-               <li key={link}>
-                  <BlurFade inView>
-                     <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/card block"
-                     >
-                        <Card className="p-4 gap-2 hover:border-foreground/20 transition-all duration-200">
-                           <div className="flex items-start justify-between gap-2">
-                              <CardTitle className="text-sm">{title}</CardTitle>
-                              <ArrowRight className="size-3.5 text-muted-foreground shrink-0 mt-0.5 transition-transform duration-200 group-hover/card:translate-x-0.5" />
-                           </div>
-                           <CardDescription className="text-xs leading-relaxed">
-                              {description}
-                           </CardDescription>
-                           <div className="flex items-center gap-1 flex-wrap mt-1">
-                              {role.map((r) => (
-                                 <Badge
-                                    key={r}
-                                    variant="secondary"
-                                    className="text-[10px] font-normal px-1.5 py-0"
-                                 >
-                                    {r}
-                                 </Badge>
-                              ))}
-                           </div>
-                        </Card>
-                     </a>
-                  </BlurFade>
-               </li>
-            ))}
-         </ul>
-      </div>
+         </div>
+         <WorkList />
+      </section>
    );
 };
 

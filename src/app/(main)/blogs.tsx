@@ -1,9 +1,9 @@
 "use client"
 
-import { BlurFade } from "@/components/magicui/blur-fade";
 import { useEffect, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowRight } from "lucide-react";
+import { SplitText } from "@/components/fx/split-text";
 
 type BlogPost = {
    title: string;
@@ -28,82 +28,81 @@ export const Blogs = () => {
          .finally(() => setLoading(false));
    }, []);
 
-   if (loading) {
-      return (
-         <div className="space-y-3">
-            {Array(3)
-               .fill(0)
-               .map((_, i) => (
-                  <BlurFade key={i} className="space-y-2">
-                     <Skeleton className="h-4 w-24" />
-                     <Skeleton className="h-5 w-full" />
-                  </BlurFade>
-               ))}
-         </div>
-      );
-   }
-
-   if (error)
-      return (
-         <BlurFade className="space-y-1">
-            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-               From the Blog
-            </p>
-            {/* <h2 className="text-base font-semibold tracking-tight">Writing</h2> */}
-            <p className="text-sm text-muted-foreground">
-               Unable to load posts right now.
-            </p>
-         </BlurFade>
-      );
-
    return (
-      <BlurFade className="space-y-3">
-         <div className="space-y-0.5">
-            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-               From the Blog
-            </p>
-            {/* <h2 className="text-base font-semibold tracking-tight">Writing</h2> */}
+      <section
+         id="writing"
+         aria-labelledby="writing-title"
+         className="gutter grid scroll-mt-20 gap-10 py-[clamp(5rem,12vw,10rem)] md:grid-cols-12"
+      >
+         <div className="md:col-span-4">
+            <div className="md:sticky md:top-28 space-y-4">
+               <h2 id="writing-title" className="text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-none tracking-[-0.045em]">
+                  <SplitText text="Writing" inView />
+               </h2>
+               <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+                  Notes on front-end craft, published on Medium.
+               </p>
+               <a
+                  href="https://medium.com/@rifkiaf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group roll label !text-foreground"
+               >
+                  <span>Read all posts ↗</span>
+                  <span aria-hidden className="text-signal">Read all posts ↗</span>
+               </a>
+            </div>
          </div>
 
-         <ul className="divide-y divide-border">
-            {blogs.map(({ title, date, link }) => (
-               <li key={link}>
-                  <BlurFade inView>
-                     <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-start justify-between gap-4 py-3 transition-colors hover:text-foreground"
-                     >
-                        <span className="text-sm font-medium leading-snug line-clamp-2 group-hover:underline underline-offset-2 decoration-muted-foreground/40">
-                           {title}
-                        </span>
-                        <time
-                           dateTime={new Date(date).toISOString()}
-                           className="text-xs text-muted-foreground whitespace-nowrap mt-0.5 tabular-nums"
-                        >
-                           {new Date(date).toLocaleDateString("en-US", {
-                              month: "short",
-                              day: "numeric",
-                              year: "numeric",
-                           })}
-                        </time>
-                     </a>
-                  </BlurFade>
-               </li>
-            ))}
-         </ul>
+         <div className="md:col-span-8">
+            {loading && (
+               <ul className="border-t border-border">
+                  {[0, 1, 2].map((i) => (
+                     <li key={i} className="space-y-3 border-b border-border py-8">
+                        <Skeleton className="h-3 w-24" />
+                        <Skeleton className="h-7 w-4/5" />
+                     </li>
+                  ))}
+               </ul>
+            )}
 
-         <a
-            href="https://medium.com/@rifkiaf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
-         >
-            Read all posts
-            <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-         </a>
-      </BlurFade>
+            {error && (
+               <p className="border-y border-border py-8 text-muted-foreground">
+                  Unable to load posts right now.
+               </p>
+            )}
+
+            {!loading && !error && (
+               <ul className="border-t border-border">
+                  {blogs.map(({ title, date, link }) => (
+                     <li key={link} className="border-b border-border">
+                        <a
+                           href={link}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           data-cursor="Read"
+                           className="group relative isolate flex items-start justify-between gap-6 overflow-hidden py-8 outline-none focus-visible:bg-muted before:absolute before:inset-0 before:-z-10 before:origin-bottom before:scale-y-0 before:bg-muted before:transition-transform before:duration-500 before:ease-out-expo hover:before:scale-y-100"
+                        >
+                           <div className="space-y-2 transition-transform duration-500 ease-out-expo group-hover:translate-x-3">
+                              <time dateTime={new Date(date).toISOString()} className="label block tabular-nums">
+                                 {new Date(date).toLocaleDateString("en-US", {
+                                    month: "short",
+                                    day: "numeric",
+                                    year: "numeric",
+                                 })}
+                              </time>
+                              <span className="block text-[clamp(1.25rem,2vw,1.875rem)] font-medium leading-tight tracking-[-0.025em] line-clamp-2">
+                                 {title}
+                              </span>
+                           </div>
+                           <ArrowUpRight className="mt-6 size-6 shrink-0 text-muted-foreground transition-all duration-500 ease-out-expo group-hover:-translate-x-3 group-hover:rotate-45 group-hover:text-signal" />
+                        </a>
+                     </li>
+                  ))}
+               </ul>
+            )}
+         </div>
+      </section>
    );
 };
 

@@ -1,0 +1,113 @@
+{
+   "jobs": [
+      {
+         "role": "Front-end Developer",
+         "company": "Ganesha Operation",
+         "period": "06/2025 — Present",
+         "highlights": [
+            "Internal Next.js and TypeScript platform used by 800+ employees across HRIS, finance and question-bank modules, with menu- and action-level RBAC.",
+            "Real-time WebSocket scoring for two national esports competitions, streaming live results for 20+ finalists per event.",
+            "DOKU and Midtrans checkout flows for paid registration, covering success, pending and failed payments.",
+            "Reusable Mantine UI and shadcn/ui components that keep several products consistent and faster to build."
+         ],
+         "location": "Bandung, ID",
+         "stack": [
+            "Next.js",
+            "TypeScript",
+            "TanStack Query",
+            "Axios",
+            "WebSocket",
+            "Mantine UI",
+            "shadcn/ui",
+            "DOKU",
+            "Midtrans"
+         ]
+      },
+      {
+         "role": "UI Designer & Front-end Developer",
+         "company": "Freelance",
+         "period": "01/2024 — Present",
+         "highlights": [
+            "Wireframes and prototypes in Figma, turned into React and Tailwind CSS builds for multiple clients.",
+            "REST API integration with TanStack Query for caching and faster data fetching.",
+            "Performance work that lifted Google Lighthouse scores to 85–95."
+         ],
+         "location": "Remote",
+         "stack": [
+            "React",
+            "Next.js",
+            "Tailwind CSS",
+            "TanStack Query",
+            "Figma"
+         ]
+      }
+   ],
+   "skills": [
+      {
+         "group": "Languages",
+         "items": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "TypeScript"
+         ],
+         "icon": "Code"
+      },
+      {
+         "group": "Frameworks",
+         "items": [
+            "React",
+            "Next.js",
+            "Tailwind CSS",
+            "shadcn/ui",
+            "Mantine"
+         ],
+         "icon": "Layers"
+      },
+      {
+         "group": "State & integration",
+         "items": [
+            "TanStack Query",
+            "Redux Toolkit",
+            "Zustand",
+            "Context API",
+            "REST APIs",
+            "WebSocket"
+         ],
+         "icon": "Database"
+      },
+      {
+         "group": "Design",
+         "items": [
+            "Figma",
+            "Wireframing",
+            "Prototyping",
+            "UI design"
+         ],
+         "icon": "PenTool"
+      },
+      {
+         "group": "Workflow",
+         "items": [
+            "Git",
+            "GitHub",
+            "Jira",
+            "Notion",
+            "Slack"
+         ],
+         "icon": "GitBranch"
+      }
+   ],
+   "education": [
+      {
+         "name": "Jabar Super Bootcamp",
+         "detail": "Full-stack scholarship, Golang & Next.js",
+         "period": "2024"
+      },
+      {
+         "name": "SMK Taruna Harapan 1 Cipatat",
+         "detail": "Software Engineering",
+         "period": "2019 — 2021"
+      }
+   ]
+}
