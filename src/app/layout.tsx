@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { siteConfig } from "@/config/site";
 import { AllProviders } from "@/components/providers";
+import { preloaderScript } from "@/components/fx/preloader-script";
 // import { VersionChecker } from "@/components/version-checker";
 
 const geist = Geist({
@@ -79,6 +80,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Real load progress for the preloader; also hides it on repeat visits before first paint. */}
+        <script dangerouslySetInnerHTML={{ __html: preloaderScript }} />
+        <noscript>
+          <style>{`[data-loader]{display:none}`}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

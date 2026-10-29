@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,8 +15,10 @@ const DRAG_THRESHOLD = 8;
 
 export const Navbar = () => {
    const pathname = usePathname();
-   const { theme, setTheme } = useTheme();
-   const isDark = theme === "dark";
+   const { resolvedTheme, setTheme } = useTheme();
+   const isDark = resolvedTheme === "dark";
+   // The theme is only known on the client; render the cord after hydration so markup matches.
+   const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
 
    // Fade the scrim in over the first 80px of scroll, driven by a motion value (no re-render).
    const { scrollY } = useScroll();
@@ -105,11 +107,13 @@ export const Navbar = () => {
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
          >
-            <PullCord
-               onPull={handlePull}
-               pulled={!isDark}
-               ariaLabel="Toggle theme"
-            />
+            {mounted && (
+               <PullCord
+                  onPull={handlePull}
+                  pulled={!isDark}
+                  ariaLabel="Toggle theme"
+               />
+            )}
          </div>
       </>
    );

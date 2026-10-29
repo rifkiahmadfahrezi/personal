@@ -168,3 +168,38 @@ body::after {
     transform: translate3d(18vw, 22vh, 0) scale(1.15);
   }
 }
+
+/* Preloader: --load is written by the inline script in app/layout.tsx and tweened here. */
+@property --load {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 0;
+}
+@counter-style pad3 {
+  system: extends decimal;
+  pad: 3 "0";
+}
+html {
+  transition: --load 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-loader-count]::before {
+  counter-reset: load var(--load);
+  content: counter(load, pad3);
+}
+[data-loader-bar] {
+  transform: scaleX(calc(var(--load) / 100));
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.rf-loading {
+  overflow: hidden;
+}
+
+.loaded [data-loader] {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-loader] {
+    display: none;
+  }
+}

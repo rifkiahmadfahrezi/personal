@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { useIntroReady } from "./intro";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -21,6 +22,7 @@ export const SplitText = ({
    stagger?: number;
    inView?: boolean;
 }) => {
+   const ready = useIntroReady();
    const words = text.split(" ");
    let index = 0;
 
@@ -33,7 +35,7 @@ export const SplitText = ({
                initial={{ y: "110%" }}
                {...(inView
                   ? { whileInView: { y: 0 }, viewport: { once: true, margin: "-10% 0px" } }
-                  : { animate: { y: 0 } })}
+                  : { animate: ready ? { y: 0 } : undefined })}
                transition={{ duration: 1, ease: EASE, delay: delay + i * stagger }}
             >
                {content}

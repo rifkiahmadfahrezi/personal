@@ -8,6 +8,7 @@ import { siteConfig } from "@/config/site";
 import home from "@/data/home.json";
 import { SplitText } from "@/components/fx/split-text";
 import { LocalTime } from "@/components/fx/local-time";
+import { useIntroReady } from "@/components/fx/intro";
 import { SocialLinks } from "./social-links";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -17,6 +18,7 @@ export const Hero = () => {
    const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
    const nameY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
    const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+   const ready = useIntroReady();
 
    // Spotlight follows the pointer through a CSS variable, no re-render.
    const onPointerMove = (e: React.PointerEvent<HTMLElement>) => {
@@ -44,7 +46,7 @@ export const Hero = () => {
          <motion.div
             className="relative grid grid-cols-2 gap-4 md:grid-cols-3"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={ready ? { opacity: 1 } : undefined}
             transition={{ duration: 0.8, delay: 0.9 }}
          >
             <p className="label">Front-end Developer</p>
@@ -71,7 +73,7 @@ export const Hero = () => {
          <motion.div
             className="relative grid items-end gap-8 lg:grid-cols-12 lg:gap-x-4"
             initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 1, ease: EASE, delay: 0.8 }}
          >
             <div className="flex items-center gap-4 lg:col-span-4">
