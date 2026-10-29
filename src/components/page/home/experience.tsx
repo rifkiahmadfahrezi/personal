@@ -144,21 +144,6 @@ export const Experience = () => {
                   );
                })}
             </ul>
-
-            <div className="mt-[clamp(4rem,8vw,6rem)] grid gap-6 lg:grid-cols-12">
-               <p className="label lg:col-span-4">(Education)</p>
-               <ul className="border-t border-border lg:col-span-8">
-                  {experience.education.map(({ name, detail, period }) => (
-                     <li key={name} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-border py-5">
-                        <div>
-                           <p className="text-lg font-medium tracking-[-0.02em]">{name}</p>
-                           <p className="text-sm text-muted-foreground">{detail}</p>
-                        </div>
-                        <span className="label tabular-nums">{period}</span>
-                     </li>
-                  ))}
-               </ul>
-            </div>
          </div>
       </section>
    );

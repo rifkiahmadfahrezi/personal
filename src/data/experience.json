@@ -97,17 +97,5 @@
          ],
          "icon": "GitBranch"
       }
-   ],
-   "education": [
-      {
-         "name": "Jabar Super Bootcamp",
-         "detail": "Full-stack scholarship, Golang & Next.js",
-         "period": "2024"
-      },
-      {
-         "name": "SMK Taruna Harapan 1 Cipatat",
-         "detail": "Software Engineering",
-         "period": "2019 — 2021"
-      }
    ]
 }
