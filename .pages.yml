@@ -1,0 +1,29 @@
+settings:
+  hide: true
+content:
+  - name: bookmarks
+    label: Bookmarks
+    type: file
+    path: src/data/bookmarks.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: url
+        label: URL
+        type: string
+        required: true
+        pattern:
+          regex: "^https?://.+"
+          message: "Must start with http:// or https://"
+      - name: purpose
+        label: Purpose
+        type: string
+        required: true
+      - name: tags
+        label: Tags
+        type: string
+        list: true

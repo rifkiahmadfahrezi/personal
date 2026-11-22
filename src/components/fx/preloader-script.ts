@@ -1,8 +1,10 @@
 // Runs inline in <head>, before the bundle. Applies the saved theme first so the loader never flashes light. Then counts scripts, stylesheets, eager images and fonts as they
 // finish, and writes the real percentage to --load on <html>. CSS renders the number (globals.css),
 // so it ticks while React is still downloading. Fires "rf:loaded" when everything is in.
+// /bookmarks skips the loader: it is opened often, in new tabs.
 export const preloaderScript = `(function(){var d=document,r=d.documentElement;
 try{var t=localStorage.getItem("theme")||"dark";if(t==="system")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";r.classList.add(t);r.style.colorScheme=t}catch(e){r.classList.add("dark")}
+if(/^\\/bookmarks\\/?$/.test(location.pathname)){r.classList.add("loaded");window.__rfDone=1;return}
 try{if(sessionStorage.getItem("rf-loaded")){r.classList.add("loaded");window.__rfDone=1;return}}catch(e){}
 if(matchMedia("(prefers-reduced-motion: reduce)").matches){window.__rfDone=1;return}
 r.classList.add("rf-loading");history.scrollRestoration="manual";scrollTo(0,0);
