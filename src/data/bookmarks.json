@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "title": "Learn system design visually",
+    "url": "https://designed-to-scale.vercel.app",
+    "purpose": "Learn system design",
+    "tags": [
+      "system design"
+    ]
+  }
+]
