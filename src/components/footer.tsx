@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import socials from "@/data/links.json";
 import { Magnetic } from "./fx/magnetic";
@@ -42,6 +43,12 @@ export const Footer = () => {
                <p className="text-sm">
                   <LocalTime />
                </p>
+               <Link href="/bookmarks" className="roll text-sm">
+                  <span>Bookmarks</span>
+                  <span aria-hidden className="text-signal">
+                     Bookmarks
+                  </span>
+               </Link>
             </div>
             <div className="space-y-2">
                <p className="label">Socials</p>

@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { setIntroReady } from "./intro";
 
 const IN_OUT = [0.76, 0, 0.24, 1] as const;
-const LABELS: Record<string, string> = { "/": "Home", "/project": "Projects" };
+const LABELS: Record<string, string> = { "/": "Home", "/project": "Projects", "/bookmarks": "Bookmarks" };
 
 // Curtain between routes: cover, swap the page behind it, then lift.
 // Intercepts same-origin link clicks in the capture phase, before next/link handles them.

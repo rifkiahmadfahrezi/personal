@@ -1,0 +1,31 @@
+settings:
+  hide: true
+content:
+  - name: bookmarks
+    label: Bookmarks
+    type: file
+    path: src/data/bookmarks.json
+    format: json
+    list: true
+    operations:
+      delete: false
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: url
+        label: URL
+        type: string
+        required: true
+        pattern:
+          regex: '^https?://[^\s/?#%:@]+(:\d{1,5})?([/?#]\S*)?$'
+          message: "Enter a full http:// or https:// URL without spaces"
+      - name: purpose
+        label: Purpose
+        type: string
+        required: true
+      - name: tags
+        label: Tags
+        type: string
+        list: true
