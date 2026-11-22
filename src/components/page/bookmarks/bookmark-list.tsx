@@ -5,11 +5,21 @@ import { ArrowUpRight } from "lucide-react";
 import { filterBookmarks, type Bookmark } from "@/lib/bookmarks";
 import { cn } from "@/lib/utils";
 
+// Hidden shortcut, not access control: Pages CMS and GitHub enforce who can edit.
+const CMS_COMMAND = ":edit";
+const CMS_URL = "https://app.pagescms.org/rifkiahmadfahrezi/personal/master/file/bookmarks";
+
 export const BookmarkList = ({ items }: { items: Bookmark[] }) => {
    const [query, setQuery] = useState("");
    const [tag, setTag] = useState<string | null>(null);
    const tags = [...new Set(items.flatMap((b) => b.tags ?? []))].sort();
    const shown = filterBookmarks(items, query, tag);
+
+   const onSearch = (value: string) => {
+      if (value.toLowerCase() !== CMS_COMMAND) return setQuery(value);
+      setQuery("");
+      window.location.assign(CMS_URL);
+   };
 
    return (
       <>
@@ -20,7 +30,7 @@ export const BookmarkList = ({ items }: { items: Bookmark[] }) => {
                   aria-label="Search bookmarks"
                   placeholder="Search..."
                   value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={(e) => onSearch(e.target.value)}
                   className="h-12 w-full rounded-full border border-border bg-transparent px-6 text-base outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-foreground md:max-w-sm"
                />
                <div role="group" aria-label="Filter by tag" className="flex flex-wrap gap-2">
