@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { BookmarkList } from "@/components/page/bookmarks/bookmark-list";
 import { SplitText } from "@/components/fx/split-text";
 import data from "@/data/bookmarks.json";
-import { parseBookmarks, type Bookmark } from "@/lib/bookmarks";
+import { parseBookmarks } from "@/lib/bookmarks";
 
 export const metadata: Metadata = {
    title: "Bookmarks",
    description: "Websites Rifki Ahmad Fahrezi keeps, each for a specific purpose.",
 };
 
-const bookmarks = parseBookmarks(data as Bookmark[]);
+const bookmarks = parseBookmarks(data);
 
 const Bookmarks = () => {
    return (

@@ -7,6 +7,8 @@ content:
     path: src/data/bookmarks.json
     format: json
     list: true
+    operations:
+      delete: false
     fields:
       - name: title
         label: Title
@@ -17,8 +19,8 @@ content:
         type: string
         required: true
         pattern:
-          regex: "^https?://.+"
-          message: "Must start with http:// or https://"
+          regex: '^https?://[^\s/?#%:@]+(:\d{1,5})?([/?#]\S*)?$'
+          message: "Enter a full http:// or https:// URL without spaces"
       - name: purpose
         label: Purpose
         type: string

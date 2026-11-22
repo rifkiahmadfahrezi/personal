@@ -1,13 +1,20 @@
 export type Bookmark = { title: string; url: string; purpose: string; tags?: string[] };
 
+const isText = (value: unknown): value is string => typeof value === "string" && value.trim() !== "";
+
 // Runs at build time: a bad hand edit fails the build instead of shipping.
-export const parseBookmarks = (items: Bookmark[]): Bookmark[] => {
-   for (const { title, url } of items) {
-      if (!/^https?:\/\/.+/.test(url) || !URL.canParse(url)) {
-         throw new Error(`Bookmark "${title}" needs a valid http(s) URL, got "${url}"`);
+export const parseBookmarks = (items: Partial<Record<keyof Bookmark, unknown>>[]): Bookmark[] => {
+   for (const { title, url, purpose, tags } of items) {
+      if (
+         ![title, url, purpose].every(isText) ||
+         !/^https?:\/\/.+/.test(url as string) ||
+         !URL.canParse(url as string) ||
+         (tags != null && !(Array.isArray(tags) && tags.every(isText)))
+      ) {
+         throw new Error(`Bookmark "${title}" is invalid: title, http(s) url and purpose are required, tags must be text (url: "${url}")`);
       }
    }
-   return items;
+   return items as Bookmark[];
 };
 
 export const filterBookmarks = (items: Bookmark[], query: string, tag: string | null): Bookmark[] => {
