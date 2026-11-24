@@ -2,9 +2,18 @@
   {
     "title": "Learn system design visually",
     "url": "https://designed-to-scale.vercel.app",
-    "purpose": "Learn system design",
+    "purpose": "learn",
     "tags": [
       "system design"
+    ]
+  },
+  {
+    "title": "An anime styled UI components",
+    "url": "https://sakuga-vfx.vercel.app/gallery/",
+    "purpose": "frontend",
+    "tags": [
+      "unique",
+      "UI"
     ]
   }
 ]
